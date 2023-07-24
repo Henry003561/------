@@ -3,6 +3,7 @@
 using namespace std;
 #include "workerManager.h"
 
+
 int main()
 {
     WorkManager wm;
@@ -20,6 +21,7 @@ int main()
             system("pause");
             break;
         case 1: // 添加职工
+            wm.addEmp();
             break;
         case 2: // 显示职工
             break;
@@ -38,6 +40,5 @@ int main()
             break;
         }
     }
-
     return 0;
 }
