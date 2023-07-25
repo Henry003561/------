@@ -32,10 +32,13 @@ int main()
             wm.mod_emp();
             break;
         case 5: // 查找职工信息
+            wm.find_emp();
             break;
         case 6: // 按照编号排序
+            wm.sort_emp();
             break;
         case 7: // 清空系统
+            wm.Clean_File();
             break;
         default:
             system("cls");

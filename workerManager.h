@@ -23,5 +23,8 @@ public:
     void del_emp();
     int isExist(int id);
     void mod_emp();
+    void find_emp();
+    void sort_emp();
+    void Clean_File();
     ~WorkManager();
 };
