@@ -184,14 +184,112 @@ void WorkManager::show_Emp()
     }
     else
     {
-        for(int i =0; i<this->m_EmpNum; i++)
+        for (int i = 0; i < this->m_EmpNum; i++)
         {
             this->m_EmpArray[i]->showInfo();
         }
-
     }
     system("pause");
     system("cls");
+}
+void WorkManager::del_emp()
+{
+    if (this->m_EmpNum == 0)
+    {
+        cout << "文件不存在或者记录为空" << endl;
+    }
+    else
+    {
+        int id = 0;
+        cout << "请输入要删除的职工编号：";
+        cin >> id;
+        int index = isExist(id);
+        if (index == -1)
+        {
+            cout << "该职工不存在" << endl;
+        }
+        else
+        {
+            for (int i = index; i < this->m_EmpNum - 1; i++)
+            {
+                this->m_EmpArray[i] = this->m_EmpArray[i + 1];
+            }
+            this->m_EmpNum--;
+            // 同步更新到文件
+            this->save();
+            cout << "用户删除成功" << endl;
+        }
+    }
+    system("pause");
+    system("cls");
+}
+
+void WorkManager::mod_emp()
+{
+    if (this->m_EmpNum == 0)
+    {
+        cout << "文件不存在或者记录为空" << endl;
+    }
+    else
+    {
+        int id = 0;
+        cout << "请输入要修改的职工编号:";
+        cin >> id;
+        int index = this->isExist(id);
+        if (index == -1)
+        {
+            cout << "该职工不存在" << endl;
+        }
+        else
+        {
+            delete this->m_EmpArray[index];
+            int newId = 0;
+            string name;
+            int dSelect = 0;
+            cout << "查到第" << id << "号职工，请输入职工号：";
+            cin >> newId;
+            cout << "请输入新姓名：";
+            cin >> name;
+            cout << "请输入新岗位" << endl;
+            cout << "1-普通员工 2-经理 3-老板 ：";
+            cin >> dSelect;
+            Worker *worker = NULL;
+            switch (dSelect)
+            {
+            case 1:
+                worker = new Employee(newId, name, 1);
+                break;
+
+            case 2:
+                worker = new Manager(newId, name, 2);
+                break;
+            case 3:
+                worker = new Boss(newId, name, 3);
+                break;
+            default:
+                break;
+            }
+            this->m_EmpArray[index] = worker;
+            cout << "第" << id << "号职工信息修改成功" << endl;
+            this->save();
+        }
+    }
+    system("pause");
+    system("cls");
+}
+
+int WorkManager::isExist(int id)
+{
+    int index = -1;
+    for (int i = 0; i < this->m_EmpNum; i++)
+    {
+        if (this->m_EmpArray[i]->m_id == id)
+        {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }
 
 WorkManager::~WorkManager()

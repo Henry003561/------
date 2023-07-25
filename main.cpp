@@ -26,12 +26,14 @@ int main()
             wm.show_Emp();
             break;
         case 3: // 删除职工信息
+            wm.del_emp();
             break;
-        case 4:    // 修改职工信息
-            break; // 查找职工信息
-        case 5:
-            break; // 按照编号排序
-        case 6:
+        case 4: // 修改职工信息
+            wm.mod_emp();
+            break;
+        case 5: // 查找职工信息
+            break;
+        case 6: // 按照编号排序
             break;
         case 7: // 清空系统
             break;

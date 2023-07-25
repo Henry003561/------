@@ -20,5 +20,8 @@ public:
     int getEmpNum();   // 统计文件中的人数
     void initEmp();
     void show_Emp();
+    void del_emp();
+    int isExist(int id);
+    void mod_emp();
     ~WorkManager();
 };
